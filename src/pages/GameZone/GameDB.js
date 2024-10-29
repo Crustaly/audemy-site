@@ -65,3 +65,53 @@ export const getMathGames = () => {
     },
   ];
 };
+
+export const translateGameType = (type) => {
+  switch(type) {
+    case 'language': return 'Language Lab';
+    case 'math': return 'Math Magic';
+    default: return type;
+  }
+}
+
+export const translateSlug = (slug) => {
+  const games = getLanguageGames().concat(getMathGames());
+  return games.filter(game => game.url.includes(slug)).pop().title ?? slug;
+}
+
+export const getGamePercentual = (games) => {
+  if (!games || games.length === 0) return { pendentJourney: 0, journey: 0 };
+  let allGames = [];
+  switch (games[0].gameType) {
+    case  'language':
+      allGames = getLanguageGames();
+      break;
+    case  'math':
+      allGames = getMathGames();
+      break;
+    default:
+      allGames = [];
+      break;
+  }
+  const total = allGames.length * 3;
+  let userLevel = 0;
+  games.forEach(game => {
+    switch(game.level) {
+      case 'Beginner':
+        userLevel += 1;
+        break;
+      case 'Intermediate':
+        userLevel += 2;
+        break;
+      case 'Advanced':
+        userLevel += 3;
+        break;
+      default: 
+        userLevel += 0;
+        break;
+    }
+  });
+  const pendentJourney = total - userLevel; 
+  const journey = (userLevel / total) * 100;
+  return { pendentJourney, journey };
+}

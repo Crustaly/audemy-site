@@ -65,7 +65,6 @@ const resetErrors = () => {
             <button type="submit" class="w-full py-3 font-bold rounded-[8px] font-bold"
               :class="errors ? 'bg-[#747575] text-white' : 'bg-[#FE892A] hover:bg-[#ff8d33] border-2 border-black shadow-[4px_4px_0px_black] text-black'"
               :disabled="errors">Log in</button>
-
           </div>
         </div>
       </form>

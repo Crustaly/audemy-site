@@ -1,6 +1,7 @@
 <script setup>
   import Header from "../../components/Header/Header.vue";
   import GameZoneList from "../GameZone/GameZoneList/GameZoneList.vue";
+  import GameProgress from "../GameZone/GameZoneProgress/GameProgress.vue";
   import { ref } from 'vue';
   
   const currentPage = ref(1);
@@ -53,6 +54,7 @@
     <GameZoneList :type="currentPage" />
   </div>
   <div v-if="currentPage === 3">
+    <GameProgress />
   </div>
 </template>
 
